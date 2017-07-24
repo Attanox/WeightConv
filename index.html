@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weight converter</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    
+    <style>
+        body{
+            color: white;
+            background-color: #666;
+            margin-top: 50px;
+        }
+        #select{
+            display: block;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="display-4 text-center mb-4">Weight Converter</h1>
+                <form>
+                   <div class="form-group">
+                       <select class="custom-select mb-2 mr-sm-2 mb-sm-0 " id="select">
+                           <option value="lbs">Pounds</option>
+                           <option value="grams">Grams</option>
+                           <option value="kgs">Kilograms</option>
+                           <option value="oz">Ounces</option>
+                       </select>
+                   </div>
+                    <div class="form-group">
+                        <input 
+                        id="Input"
+                        type="number" 
+                        class="form-control form-control-lg"
+                        placeholder="Enter value">
+                    </div>
+                </form>
+                
+                <div class="output">
+                    
+                    <div class="card card-success mb-3">
+                        <div class="card-block">
+                            <h4 id="grD">Grams:</h4>
+                            <div id="gramsDisplay">
+                                0
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card card-primary mb-3">
+                        <div class="card-block">
+                            <h4 id="kgD">Kilograms:</h4>
+                            <div id="kgDisplay">
+                                0
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card card-danger mb-3">
+                        <div class="card-block">
+                            <h4 id="ozD">Ounces:</h4>
+                            <div id="ozDisplay">
+                                0
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card card-warning mb-3">
+                        <div class="card-block">
+                            <h4 id="lbD">Pounds:</h4>
+                            <div id="lbDisplay">
+                                0
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function fromPounds(){
+            document.getElementById('gramsDisplay').innerHTML = Number(this.value)/0.0022046;
+            document.getElementById('kgDisplay').innerHTML = Number(this.value)/2.2046;
+            document.getElementById('ozDisplay').innerHTML = Number(this.value)*16;
+            document.getElementById('lbDisplay').innerHTML = this.value;  
+        }
+        
+        function fromGrams(){
+            document.getElementById('gramsDisplay').innerHTML = Number(this.value);
+            document.getElementById('kgDisplay').innerHTML = Number(this.value)/1000;
+            document.getElementById('ozDisplay').innerHTML = Number(this.value)*0.035274;
+            document.getElementById('lbDisplay').innerHTML = Number(this.value)/500;
+        }
+        
+        function fromOz(){
+            document.getElementById('gramsDisplay').innerHTML = Number(this.value)/0.035274;
+            document.getElementById('kgDisplay').innerHTML = Number(this.value)/35.274;
+            document.getElementById('ozDisplay').innerHTML = Number(this.value);
+            document.getElementById('lbDisplay').innerHTML = Number(this.value)*0.062500;
+        }
+        
+        function fromKilograms(){
+            document.getElementById('gramsDisplay').innerHTML = Number(this.value)*1000;
+            document.getElementById('kgDisplay').innerHTML = Number(this.value);
+            document.getElementById('ozDisplay').innerHTML = Number(this.value)*35.274;
+            document.getElementById('lbDisplay').innerHTML = Number(this.value)*2.2046;
+        }
+
+        
+        document.getElementById('Input').addEventListener('input', fromPounds);
+        document.getElementById('select').addEventListener('input',function(){
+            //console.log(this.value);
+           if(this.value === "lbs"){
+               document.getElementById('Input').addEventListener('input', fromPounds);
+           } else if (this.value === "kgs"){
+               document.getElementById('Input').addEventListener('input', fromKilograms);
+           } else if (this.value === "grams"){
+               document.getElementById('Input').addEventListener('input', fromGrams);
+           } else if (this.value === "oz"){
+               document.getElementById('Input').addEventListener('input', fromOz);
+           }
+        });
+        
+    </script>
+</body>
+</html>
