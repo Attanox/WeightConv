@@ -111,7 +111,48 @@
             document.getElementById('ozDisplay').innerHTML = Number(this.value)*35.274;
             document.getElementById('lbDisplay').innerHTML = Number(this.value)*2.2046;
         }
-
+        
+        function fromPounds2(val){
+            document.getElementById('gramsDisplay').innerHTML = val/0.0022046;
+            document.getElementById('kgDisplay').innerHTML = val/2.2046;
+            document.getElementById('ozDisplay').innerHTML = val*16;
+            document.getElementById('lbDisplay').innerHTML = val;  
+        }
+        
+        function fromGrams2(val){
+            document.getElementById('gramsDisplay').innerHTML = val;
+            document.getElementById('kgDisplay').innerHTML = val/1000;
+            document.getElementById('ozDisplay').innerHTML = val*0.035274;
+            document.getElementById('lbDisplay').innerHTML = val/500;
+        }
+        
+        function fromOz2(val){
+            document.getElementById('gramsDisplay').innerHTML = val/0.035274;
+            document.getElementById('kgDisplay').innerHTML = val/35.274;
+            document.getElementById('ozDisplay').innerHTML = val;
+            document.getElementById('lbDisplay').innerHTML = val*0.062500;
+        }
+        
+        function fromKilograms2(val){
+            document.getElementById('gramsDisplay').innerHTML = val*1000;
+            document.getElementById('kgDisplay').innerHTML = val;
+            document.getElementById('ozDisplay').innerHTML = val*35.274;
+            document.getElementById('lbDisplay').innerHTML = val*2.2046;
+        }
+        document.querySelector('select').addEventListener('change',function(){
+            var inp = Number(document.getElementById('Input').value);
+            console.log(this.value);
+            console.log(inp);
+           if(this.value === "lbs"){
+               fromPounds2(inp);
+           } else if (this.value === "kgs"){
+               fromKilograms2(inp);
+           } else if (this.value === "grams"){
+               fromGrams2(inp);
+           } else if (this.value === "oz"){
+               fromOz2(inp);
+           }
+        });
         
         document.getElementById('Input').addEventListener('input', fromPounds);
         document.getElementById('select').addEventListener('input',function(){
